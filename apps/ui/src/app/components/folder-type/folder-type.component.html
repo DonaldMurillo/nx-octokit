@@ -1,0 +1,11 @@
+
+<hr>
+<div>{{folderRef.name}}</div>
+@for (item of folderRef.children | keyvalue; track item.key) {
+	@if (item.value.type === 'folder') {
+		<nx-octokit-folder-type [folderRef]="item.value"></nx-octokit-folder-type>
+	} @else {
+		<nx-octokit-file-type [fileRef]="item.value"></nx-octokit-file-type>
+	}
+}
+

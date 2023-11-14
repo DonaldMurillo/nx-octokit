@@ -1,1 +1,26 @@
-<nx-octokit-nx-welcome></nx-octokit-nx-welcome> <router-outlet></router-outlet>
+<!-- Template for displaying the file structure -->
+@for (entry of octokitService.getRoot().children; track entry.path) {
+	@if (entry.type === 'dir') {
+		<div>{{ entry.path }}</div>
+	}@else if (entry.type === 'file') {
+		<div (click)="selectFile(entry)">{{ entry.path }}</div>
+	}
+}
+@if (selected(); as selected) {
+	<pre>{{selected}}</pre>
+}
+
+<!-- <pre>{{octokitService.fileTree() | json }}</pre> -->
+
+<!-- <div *ngFor="let entry of octokitService.getRoot().children">
+	<div *ngIf="entry.type === 'dir'"></div>
+	<div *ngIf="entry.type === 'file'" (click)="selectFile(entry)"></div>
+ </div>
+ 
+ <pre *ngIf="selectedFileContent">{{ selectedFileContent }}</pre> -->
+@if (octokitService.fileTree(); as fileTree) {
+	@if (fileTree.type === 'folder') {
+		<nx-octokit-folder-type [folderRef]="fileTree"></nx-octokit-folder-type>
+	}
+}
+<router-outlet></router-outlet>
