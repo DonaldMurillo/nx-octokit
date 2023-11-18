@@ -1,0 +1,3 @@
+<p>Current Branch <strong>{{dataService.currentBranch()?.ref ?? 'main'}}</strong></p>
+<input type="text" [formControl]="branch">
+<button (click)="createBranch()">Create</button>

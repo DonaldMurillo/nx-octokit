@@ -18,6 +18,10 @@
  </div>
  
  <pre *ngIf="selectedFileContent">{{ selectedFileContent }}</pre> -->
+
+<nx-octokit-branching></nx-octokit-branching>
+<button (click)="getContent()">Get Content</button>
+<button (click)="createContent()">Create Content</button>
 @if (octokitService.fileTree(); as fileTree) {
 	@if (fileTree.type === 'folder') {
 		<nx-octokit-folder-type [folderRef]="fileTree"></nx-octokit-folder-type>
